@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service
 class BookService(val db: JdbcTemplate) {
 
     fun getBooks(): List<BookResponse> {
-        return db.query("SELECT * FROM books") { response, _ ->
-            BookResponse(
-                id = response.getString("id"),
-                title = response.getString("title"),
-                writer = response.getString("writer"),
-                publishedYear = response.getInt("publishedYear")
-            )
-        }
+        return listOf(BookResponse("1", "Detective Conan", "Aoyama Gosho", 1994))
+    }
+
+    fun getBookById(id: String): List<BookResponse> {
+        return listOf(BookResponse(id, "Detective Conan", "Aoyama Gosho", 1994))
+    }
+
+    fun save(book: BookResponse) {
+        println(book)
     }
 }
